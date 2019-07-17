@@ -8,10 +8,6 @@ const style = {
     paddingLeft: '10px'
 }
 
-/* 
-    
-*/
-
 // !table's header
 const TableHeader = (props) => {
     // loop through an array
@@ -59,7 +55,7 @@ class Table extends Component {
                <div className="row justify-content-center">
                    <div className="col-lg-12">
                         <table>
-                            < TableHeader theader={this.props.theader} />
+                            < TableHeader theader={theader} />
                             < TableBody characters={characters}  removeCharacter={removeCharacter}/>
                         </table>
                         <DisplayMsg msg={msg} />

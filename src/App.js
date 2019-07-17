@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import './App.css';
 import './Components/Table';
 import Table from './Components/Table';
+import Form from './Components/Form';
+
 // import MyFirstComponent from './Components/MyFirstComponent';
 
 
@@ -11,6 +13,7 @@ import Table from './Components/Table';
 
 class App extends Component {
     state = {
+        characters: [],
         divStyle : {
             marginBottom: '0px',
             marginTop: '5px',
@@ -51,6 +54,7 @@ class App extends Component {
     compare(key)  {
         const { tableData } = this.state
         this.setState({
+
             tableData: tableData.sort((a, b)=>{
                 if (a[key] < b[key]) return -1;
                 if (a[key] > b[key]) return 1;
@@ -68,6 +72,10 @@ class App extends Component {
             return i !== index
             })
         })
+    }
+    
+    handleSubmit = character => {
+        this.setState({character: [...this.state.characters, character]})
     }
     
     render() {
@@ -91,6 +99,7 @@ class App extends Component {
                     removeCharacter={this.removeCharacter}
                 />
 
+                <Form handleSubmit={this.handleSubmit}/>
 
                 {/* <MyFirstComponent /> */}
             </div>
