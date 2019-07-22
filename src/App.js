@@ -19,9 +19,9 @@ class App extends Component {
             marginTop: '5px',
             cursor: 'pointer'
         },
-        
-        tableDataHeader : ['Name', 'Job'],
 
+        tableDataHeader : ['Name', 'Job'],
+        getTrue: false,
         tableData: [
             {
                 name: 'Charlie',
@@ -41,19 +41,15 @@ class App extends Component {
             }
         ],
 
-        sortByName: 'Footer Default',
-        sortByClick: ''
-    }
-    
-    sortClickFunction = () => {
-        this.setState({
-            sortByClick: 'Sorted by click'
-        })
+        sortByName: 'Sorted By Name',
+        sortByJob: 'Sorted By Job'
     }
 
-    compare(key)  {
-        const { tableData } = this.state
+    sortData(key)  {
+        const { tableData, getTrue } = this.state
+
         this.setState({
+            getTrue: true,
 
             tableData: tableData.sort((a, b)=>{
                 if (a[key] < b[key]) return -1;
@@ -79,29 +75,34 @@ class App extends Component {
     }
     
     render() {
-        const { tableData, sortByName, tableDataHeader, divStyle } = this.state;
+        const { tableData, sortByName, sortByJob, tableDataHeader, divStyle, getTrue, getFals } = this.state;
         
         return (
             <div>
                 <div className="container">
                     <div className="row">
+                    
                         <div className="col-lg-12">
-                            <p style={divStyle} onClick={() => this.compare('name')}>Sort Name</p>
-                            <p style={divStyle} onClick={() => this.compare('job')}>Sort Job</p>
+                            <p style={divStyle} onClick={() => this.sortData('name')}>Sort Name</p>
+                            <p style={divStyle} onClick={() => this.sortData('job')}>Sort Job</p>
+
+                            <Table
+                                characters={tableData} 
+                                theader={tableDataHeader}
+                                removeCharacter={this.removeCharacter}
+                            />
+
+                            {getTrue ? sortByJob : ''} 
+                             
                         </div>
+
+                        <Form handleSubmit={this.handleSubmit}/>
+
+                        {/* <MyFirstComponent /> */}
                     </div>
                 </div>
-            
-                <Table
-                    // msg={sortByName} 
-                    characters={tableData} 
-                    theader={tableDataHeader}
-                    removeCharacter={this.removeCharacter}
-                />
-
-                <Form handleSubmit={this.handleSubmit}/>
-
-                {/* <MyFirstComponent /> */}
+                
+               
             </div>
         );
     }

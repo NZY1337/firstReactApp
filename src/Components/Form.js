@@ -29,7 +29,6 @@ class Form extends Component {
     render() {
         const {name, job} = this.state;
         console.log(this.state);
-        alert(this.state.lol)
         return(
             <div className="container">
                 <div className="row">

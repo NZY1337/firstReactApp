@@ -13,4 +13,5 @@ class PassDataFromCompToComp extends React.Component {
        )
    }
 }
+
 export default PassDataFromCompToComp;

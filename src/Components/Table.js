@@ -47,9 +47,9 @@ const DisplayMsg = props => {
 
 class Table extends Component {
     render() {
+        // all those stuffs are included in the 'props' object
         const { characters, theader, msg, removeCharacter } = this.props;
-        console.log(this.props);
-
+       
         return (
            <div className="container my-5">
                <div className="row justify-content-center">
